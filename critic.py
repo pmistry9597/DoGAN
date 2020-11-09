@@ -41,5 +41,3 @@ class Critic(nn.Module):
         x = x.view([self.batchSize, -1])
         x = self.fcBlocks(x)
         return x
-
-critic = Critic()
