@@ -1,5 +1,5 @@
 # critic network, outputs a score that should be higher for real images, lower for fake images
-# it will try to make this loss function bigger: D(x) - D(G) where D(x) is avg of
+# it will try to make this loss function bigger: D(x) - D(G) where D(x) is score of real images, D(G) is score of generated images
 
 from torch import nn
 
