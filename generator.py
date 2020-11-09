@@ -19,7 +19,11 @@ class Generator(nn.Module):
         self.ct2 = createConvT(128, 128, kernel_size=6)
         self.ct3 = createConvT(128, 64, kernel_size=7)
         self.ct4 = createConvT(64, 32, kernel_size=7, stride=2)
-        self.ct5 = createConvT(32, 3, kernel_size=8, stride=2)
+        #self.ct5 = createConvT(32, 3, kernel_size=8, stride=2)
+        self.ct5 = nn.Sequential(
+            nn.ConvTranspose2d(32, 3, kernel_size=8, stride=(2,2)),
+            nn.Tanh()
+        )
 
     def forward(self, x):
         x = self.ct0(x)
