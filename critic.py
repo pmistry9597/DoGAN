@@ -6,12 +6,12 @@ from torch import nn
 # create convolutional block
 def createConv(inChannels, outChannels, kernel_size, batchNorm=False):
     conv = nn.Conv2d(inChannels, outChannels, kernel_size=(kernel_size, kernel_size))
-    maxpool = nn.MaxPool2d(2,2)
+    #maxpool = nn.MaxPool2d(2,2)
 
     if batchNorm:
-        return nn.Sequential( conv, nn.BatchNorm2d(outChannels), nn.LeakyReLU(), maxpool )
+        return nn.Sequential( conv, nn.BatchNorm2d(outChannels), nn.LeakyReLU() )
 
-    return nn.Sequential( conv, nn.LeakyReLU(), maxpool )
+    return nn.Sequential( conv, nn.LeakyReLU() )
 
 #create fully connected layer
 def createFC(inNum, outNum, batchNorm=False):
