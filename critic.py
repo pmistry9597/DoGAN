@@ -25,16 +25,16 @@ class Critic(nn.Module):
         super(Critic, self).__init__()
         #convolutional layers
         self.convBlocks = nn.Sequential( 
-            createConv(3, 32, kernel_size=3, stride=2, padding=1),# batchNorm=True), 
-            createConv(32, 64, kernel_size=3, stride=2, padding=1),# batchNorm=True),
-            createConv(64, 128, kernel_size=3, stride=1, padding=0)# batchNorm=True)
+            createConv(3, 32, kernel_size=3, stride=2, padding=1, batchNorm=True), 
+            createConv(32, 64, kernel_size=3, stride=2, padding=1, batchNorm=True),
+            createConv(64, 128, kernel_size=3, stride=1, padding=0, batchNorm=True)
             #createConv(128, 256, kernel_size=5, stride=1)# batchNorm=True)
         )
 
         #fully connected layers
         self.fcBlocks = nn.Sequential(
-            createFC(67712, 100),#, batchNorm=True),
-            createFC(100, 50),#, batchNorm=True),
+            createFC(67712, 100, batchNorm=True),
+            createFC(100, 50, batchNorm=True),
             nn.Linear(50, 1)
         )
 
