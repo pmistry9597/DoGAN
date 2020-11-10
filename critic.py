@@ -15,22 +15,25 @@ def createConv(inChannels, outChannels, kernel_size, batchNorm=False):
 
 #create fully connected layer
 def createFC(inNum, outNum, batchNorm=False):
-    return nn.Sequential( nn.Linear(inNum, outNum), nn.BatchNorm1d(outNum), nn.LeakyReLU() )
+    if batchNorm:
+        return nn.Sequential( nn.Linear(inNum, outNum), nn.BatchNorm1d(outNum), nn.LeakyReLU() )
+    
+    return nn.Sequential( nn.Linear(inNum, outNum), nn.LeakyReLU() )
 
 class Critic(nn.Module):
     def __init__(self):
         super(Critic, self).__init__()
         #convolutional layers
         self.convBlocks = nn.Sequential( 
-            createConv(3, 32, kernel_size=5, batchNorm=True), 
-            createConv(32, 64, kernel_size=5, batchNorm=True),
-            createConv(64, 128, kernel_size=5, batchNorm=True)
+            createConv(3, 32, kernel_size=5),# batchNorm=True), 
+            createConv(32, 64, kernel_size=5),# batchNorm=True),
+            createConv(64, 128, kernel_size=5)# batchNorm=True)
         )
 
         #fully connected layers
         self.fcBlocks = nn.Sequential(
-            createFC(10368, 100, batchNorm=True),
-            createFC(100, 50, batchNorm=True),
+            createFC(10368, 100),#, batchNorm=True),
+            createFC(100, 50),#, batchNorm=True),
             nn.Linear(50, 1)
         )
 

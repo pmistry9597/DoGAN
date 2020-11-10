@@ -13,7 +13,8 @@ class DogData(Dataset):
         return len(self.files)
     
     def __getitem__(self, idx):
-        out = Image.open(self.path + '/' + self.files[idx])
+        out = Image.open('example_data/square.jpg')
+        #out = Image.open(self.path + '/' + self.files[idx])
         #out = np.array(img)
         #out = tensor([[npimg], 1])
         if (self.transform):
