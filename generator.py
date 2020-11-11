@@ -32,22 +32,22 @@ class Generator(nn.Module):
             nn.ConvTranspose2d(
                 nz, 512, kernel_size=4, 
                 stride=1, padding=0, bias=False),
-            nn.BatchNorm2d(512),
+            #nn.BatchNorm2d(512),
             nn.LeakyReLU(),
             nn.ConvTranspose2d(
                 512, 256, kernel_size=4, 
                 stride=2, padding=0, bias=False),
-            nn.BatchNorm2d(256),
+            #nn.BatchNorm2d(256),
             nn.LeakyReLU(),
             nn.ConvTranspose2d(
                 256, 128, kernel_size=5, 
                 stride=2, padding=0, bias=False),
-            nn.BatchNorm2d(128),
+            #nn.BatchNorm2d(128),
             nn.LeakyReLU(),
             nn.ConvTranspose2d(
                 128, 64, kernel_size=5, 
                 stride=2, padding=0, bias=False),
-            nn.BatchNorm2d(64),
+            #nn.BatchNorm2d(64),
             nn.LeakyReLU(),
             nn.ConvTranspose2d(
                 64, 3, kernel_size=4, 
