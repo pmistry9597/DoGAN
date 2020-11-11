@@ -55,6 +55,30 @@ class Generator(nn.Module):
             nn.Tanh()
         )
 
+        '''self.main = nn.Sequential(
+            # nz will be the input to the first convolution
+            nn.ConvTranspose2d(
+                nz, 512, kernel_size=5, 
+                stride=1, padding=0, bias=False),
+            nn.LeakyReLU(True),
+            nn.ConvTranspose2d(
+                512, 256, kernel_size=5, 
+                stride=1, padding=0, bias=False),
+            nn.LeakyReLU(True),
+            nn.ConvTranspose2d(
+                256, 128, kernel_size=6, 
+                stride=2, padding=0, bias=False),
+            nn.LeakyReLU(True),
+            nn.ConvTranspose2d(
+                128, 64, kernel_size=6, 
+                stride=2, padding=0, bias=False),
+            nn.LeakyReLU(True),
+            nn.ConvTranspose2d(
+                64, 3, kernel_size=6, 
+                stride=2, padding=0, bias=False),
+            nn.Tanh()
+        )'''
+
     def forward(self, x):
         '''x = self.ct0(x)
         x = self.ct1(x)
@@ -64,6 +88,7 @@ class Generator(nn.Module):
         x = self.ct5(x)'''
         x = self.main(x)
         return x
+
 '''
 import torch
 rando = torch.randn([1,100,1,1])
@@ -78,5 +103,4 @@ plt.figure()
 rando = torch.randn([1,100,1,1])
 gened = gen(rando)
 plt.imshow(gened[0].permute(1,2,0).detach().numpy())
-plt.show()
-'''
+plt.show()'''
