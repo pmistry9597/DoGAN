@@ -21,3 +21,7 @@ The critic will be your typical CNN with a linear activation at the last layer. 
 ## The Generator
 
 The generator will have an input vector of size 512 and output a 100x100 image. It uses Convolutional Transpose 2D layers rather than using an upsample + Convolutional 2D layers. The final layer has a tanh activation, as we want images with a range of [-1, 1].
+
+## Current State
+
+So far, I've managed to make the network imitate a red square, which can be found in the example_data folder. Imitating dog images has proven to be much more difficult D':. But, I'll keep trying!
