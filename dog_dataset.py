@@ -4,7 +4,7 @@ import os
 
 class DogData(Dataset):
     def __init__(self, transform=None):
-        self.path = 'dogs_cats_sample_1000/train/dogs'
+        self.path = '/content/drive/My Drive/dogs_sample/dogs_cats_sample_1000/train/dogs'
         self.transform = transform
 
         self.files = [ f for f in os.listdir(self.path) if os.path.isfile(self.path + '/' + f) and f[-3:] == 'jpg' ]
@@ -13,8 +13,8 @@ class DogData(Dataset):
         return len(self.files)
     
     def __getitem__(self, idx):
-        out = Image.open('example_data/square.jpg')
-        #out = Image.open(self.path + '/' + self.files[idx])
+        #out = Image.open('example_data/square.jpg')
+        out = Image.open(self.path + '/' + self.files[idx])
         #out = np.array(img)
         #out = tensor([[npimg], 1])
         if (self.transform):
