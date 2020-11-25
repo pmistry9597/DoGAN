@@ -30,27 +30,27 @@ class Generator(nn.Module):
         self.main = nn.Sequential(
             # nz will be the input to the first convolution
             nn.ConvTranspose2d(
-                nz, 512, kernel_size=4, 
+                nz, 512, kernel_size=5, 
                 stride=1, padding=0, bias=False),
             #nn.BatchNorm2d(512),
             nn.LeakyReLU(),
             nn.ConvTranspose2d(
-                512, 256, kernel_size=4, 
-                stride=2, padding=0, bias=False),
+                512, 256, kernel_size=5, 
+                stride=1, padding=0, bias=False),
             #nn.BatchNorm2d(256),
             nn.LeakyReLU(),
             nn.ConvTranspose2d(
-                256, 128, kernel_size=5, 
+                256, 128, kernel_size=6, 
                 stride=2, padding=0, bias=False),
             #nn.BatchNorm2d(128),
             nn.LeakyReLU(),
             nn.ConvTranspose2d(
-                128, 64, kernel_size=5, 
+                128, 64, kernel_size=6, 
                 stride=2, padding=0, bias=False),
             #nn.BatchNorm2d(64),
             nn.LeakyReLU(),
             nn.ConvTranspose2d(
-                64, 3, kernel_size=4, 
+                64, 3, kernel_size=6, 
                 stride=2, padding=0, bias=False),
             nn.Tanh()
         )
@@ -89,8 +89,8 @@ class Generator(nn.Module):
         x = self.main(x)
         return x
 
-'''
-import torch
+
+'''import torch
 rando = torch.randn([1,100,1,1])
 gen = Generator()
 gened = gen(rando)

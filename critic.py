@@ -11,14 +11,14 @@ def createConv(inChannels, outChannels, kernel_size, stride, padding=0, batchNor
     if batchNorm:
         return nn.Sequential( conv, nn.BatchNorm2d(outChannels), nn.LeakyReLU() )
 
-    return nn.Sequential( conv, nn.LeakyReLU() )
+    return nn.Sequential( conv, nn.LeakyReLU(0.2) )
 
 #create fully connected layer
 def createFC(inNum, outNum, batchNorm=False):
     if batchNorm:
         return nn.Sequential( nn.Linear(inNum, outNum), nn.BatchNorm1d(outNum), nn.LeakyReLU() )
     
-    return nn.Sequential( nn.Linear(inNum, outNum), nn.LeakyReLU() )
+    return nn.Sequential( nn.Linear(inNum, outNum), nn.LeakyReLU(0.2) )
 
 class Critic(nn.Module):
     def __init__(self):
@@ -27,16 +27,14 @@ class Critic(nn.Module):
         self.convBlocks = nn.Sequential( 
             createConv(3, 32, kernel_size=3, stride=2, padding=1, batchNorm=False), 
             createConv(32, 64, kernel_size=3, stride=2, padding=1, batchNorm=False),
-            createConv(64, 128, kernel_size=3, stride=1, padding=0, batchNorm=False),
-            createConv(128, 256, kernel_size=3, stride=1, padding=0, batchNorm=False)
+            createConv(64, 128, kernel_size=5, stride=1, padding=0, batchNorm=False),
+            createConv(128, 256, kernel_size=5, stride=1, padding=0, batchNorm=False)
             #createConv(128, 256, kernel_size=5, stride=1)# batchNorm=True)
         )
 
         #fully connected layers
         self.fcBlocks = nn.Sequential(
-            createFC(112896, 100, batchNorm=False),
-            createFC(100, 50, batchNorm=False),
-            nn.Linear(50, 1)
+            nn.Linear(73984, 1)
         )
 
         self.batchSize = 1
