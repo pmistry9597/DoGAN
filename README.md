@@ -7,12 +7,13 @@ Look at how cute she is!
 
 ## The Data
 
-The data will be simple 100x100 images of dogs found off Kaggle. These images were originally different sizes, but a simple script was used to resize and save all of the images. There is 1000 images of dogs in this dataset.
+The data will be simple 100x100 images of dogs found off Kaggle. These images were originally different sizes, but a simple script was used to resize and save all of the images. There are 1000 images of dogs in this dataset.
 
 ## The GAN
 
-The GAN will be a Wasserstein-style generator, with the critic outputting a score rather than a binary output indicating real or fake.
+The GAN will be a WGAN-GP, with the critic outputting a score rather than a binary output indicating real or fake.
 The score outputted by the critic should be higher for real images and lower for fake images (the score includes negative numbers).
+The loss function will have a gradient penalty term which was shown to be much better (in terms of stability and trainability) compared to the original WGAN.
 
 ## The Critic
 
